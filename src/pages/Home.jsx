@@ -34,7 +34,7 @@ function Home() {
             key={card.to}
             type="button"
             onClick={() => navigate(card.to)}
-            className="home-card flex flex-col text-left"
+            className="home-card flex flex-col justify-between text-left"
             style={{ padding: '20px 18px', height: 120 }}
           >
             <span
@@ -43,7 +43,7 @@ function Home() {
             >
               →
             </span>
-            <div className="mt-auto">
+            <div>
               <span
                 className="block uppercase text-white"
                 style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.04em' }}
