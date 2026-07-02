@@ -22,22 +22,27 @@ function NuevoPresupuesto() {
   const [cliente, setCliente] = useState('');
   const [proyecto, setProyecto] = useState('');
   const [search, setSearch] = useState('');
+  const [marca, setMarca] = useState('');
   const [showResults, setShowResults] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
 
+  const marcas = useMemo(() => Array.from(new Set(productos.map((p) => p.mar))), []);
+
   const resultados = useMemo(() => {
     const query = search.trim().toLowerCase();
-    if (query.length < 2) return [];
+    if (query.length < 2 && !marca) return [];
     return productos
+      .filter((p) => !marca || p.mar === marca)
       .filter(
         (p) =>
+          query.length < 2 ||
           p.des.toLowerCase().includes(query) ||
           p.mar.toLowerCase().includes(query) ||
           p.cod.toLowerCase().includes(query) ||
           p.cat.toLowerCase().includes(query)
       )
       .slice(0, 10);
-  }, [search]);
+  }, [search, marca]);
 
   const handleSelect = (producto) => {
     agregarItem(producto);
@@ -50,42 +55,59 @@ function NuevoPresupuesto() {
       <div className="min-w-0 flex-1">
         <h1 className="text-xl font-extrabold text-black">Nuevo presupuesto</h1>
 
-        <div className="relative mt-6">
-          <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-black/40" />
-          <input
-            type="text"
-            value={search}
+        <div className="mt-6 flex gap-3">
+          <div className="relative flex-1">
+            <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-black/40" />
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+                setShowResults(true);
+              }}
+              onFocus={() => setShowResults(true)}
+              onBlur={() => setTimeout(() => setShowResults(false), 100)}
+              placeholder="Buscar producto por descripción, marca o código..."
+              className="w-full rounded-lg border border-black/15 py-4 pl-12 pr-4 text-base text-black placeholder-black/40 outline-none transition-colors duration-150 focus:border-black"
+            />
+            {showResults && resultados.length > 0 && (
+              <ul className="absolute z-10 mt-1 max-h-80 w-full overflow-auto rounded-lg border border-black/10 bg-white shadow-sm">
+                {resultados.map((producto, idx) => (
+                  <li key={`${producto.cod}-${idx}`}>
+                    <button
+                      type="button"
+                      onMouseDown={(e) => e.preventDefault()}
+                      onClick={() => handleSelect(producto)}
+                      className="flex w-full items-center justify-between gap-4 px-4 py-2.5 text-left text-sm transition-colors duration-150 hover:bg-mist"
+                    >
+                      <span className="min-w-0 flex-1">
+                        <span className="block truncate text-black">{producto.des}</span>
+                        <span className="text-xs text-black/50">{producto.mar}</span>
+                      </span>
+                      <span className="shrink-0 font-medium text-black tabular-nums">
+                        {formatCurrency(producto.pre)}
+                      </span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <select
+            value={marca}
             onChange={(e) => {
-              setSearch(e.target.value);
+              setMarca(e.target.value);
               setShowResults(true);
             }}
-            onFocus={() => setShowResults(true)}
-            onBlur={() => setTimeout(() => setShowResults(false), 100)}
-            placeholder="Buscar producto por descripción, marca o código..."
-            className="w-full rounded-lg border border-black/15 py-4 pl-12 pr-4 text-base text-black placeholder-black/40 outline-none transition-colors duration-150 focus:border-black"
-          />
-          {showResults && resultados.length > 0 && (
-            <ul className="absolute z-10 mt-1 max-h-80 w-full overflow-auto rounded-lg border border-black/10 bg-white shadow-sm">
-              {resultados.map((producto, idx) => (
-                <li key={`${producto.cod}-${idx}`}>
-                  <button
-                    type="button"
-                    onMouseDown={(e) => e.preventDefault()}
-                    onClick={() => handleSelect(producto)}
-                    className="flex w-full items-center justify-between gap-4 px-4 py-2.5 text-left text-sm transition-colors duration-150 hover:bg-mist"
-                  >
-                    <span className="min-w-0 flex-1">
-                      <span className="block truncate text-black">{producto.des}</span>
-                      <span className="text-xs text-black/50">{producto.mar}</span>
-                    </span>
-                    <span className="shrink-0 font-medium text-black tabular-nums">
-                      {formatCurrency(producto.pre)}
-                    </span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
+            className="w-48 shrink-0 rounded-lg border border-black/15 bg-white px-4 py-4 text-base text-black outline-none transition-colors duration-150 focus:border-black"
+          >
+            <option value="">Todas las marcas</option>
+            {marcas.map((m) => (
+              <option key={m} value={m}>
+                {m}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="mt-6 overflow-hidden rounded-lg border border-black/10">
