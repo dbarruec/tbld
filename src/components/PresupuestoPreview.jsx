@@ -1,6 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { X } from 'lucide-react';
 import { formatCurrency } from '../utils/currency';
+import { printPresupuesto } from '../utils/printPresupuesto';
 import { useStorage } from '../hooks/useStorage';
 
 const CONTACTO = 'dario@tbld.com.ar · +54 911 3618 3567 · tbld.com.ar';
@@ -34,6 +35,18 @@ function PresupuestoPreview({ open, onClose, cliente, proyecto, items, iva, tota
 
   if (!open) return null;
 
+  const handlePrint = () => {
+    printPresupuesto({
+      numero,
+      fecha,
+      cliente: cliente.trim(),
+      proyecto: proyecto.trim(),
+      items,
+      iva,
+      totales,
+    });
+  };
+
   return (
     <div
       className="modal-backdrop fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
@@ -47,12 +60,12 @@ function PresupuestoPreview({ open, onClose, cliente, proyecto, items, iva, tota
           type="button"
           onClick={onClose}
           aria-label="Cerrar"
-          className="no-print absolute right-4 top-4 rounded-md p-1.5 text-black/40 transition-colors duration-150 hover:text-black"
+          className="absolute right-4 top-4 rounded-md p-1.5 text-black/40 transition-colors duration-150 hover:text-black"
         >
           <X size={20} />
         </button>
 
-        <div className="print-area overflow-y-auto p-8">
+        <div className="overflow-y-auto p-8">
           <div className="flex items-start justify-between gap-4 border-b border-black/10 pb-6">
             <span className="text-2xl font-black uppercase tracking-wide text-black">TABLADA</span>
             <span className="rounded-full border border-black/10 bg-mist px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-black/60">
@@ -136,7 +149,7 @@ function PresupuestoPreview({ open, onClose, cliente, proyecto, items, iva, tota
           </p>
         </div>
 
-        <div className="no-print flex items-center justify-end gap-3 border-t border-black/10 bg-panel px-8 py-4">
+        <div className="flex items-center justify-end gap-3 border-t border-black/10 bg-panel px-8 py-4">
           <button
             type="button"
             onClick={onClose}
@@ -146,7 +159,7 @@ function PresupuestoPreview({ open, onClose, cliente, proyecto, items, iva, tota
           </button>
           <button
             type="button"
-            onClick={() => window.print()}
+            onClick={handlePrint}
             className="rounded-lg bg-black px-4 py-2.5 text-sm font-bold text-white transition-all duration-150 active:scale-[0.98]"
           >
             Imprimir / Exportar PDF
