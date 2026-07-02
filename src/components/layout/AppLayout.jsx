@@ -10,7 +10,7 @@ function AppLayout() {
   return (
     <div className="min-h-screen bg-white">
       <header className="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between bg-black px-6">
-        <span className="text-sm font-bold tracking-wide text-white">TABLADA</span>
+        <span className="text-sm font-black uppercase tracking-wide text-white">TABLADA</span>
         <nav className="flex items-center gap-1">
           {navItems.map((item) => (
             <NavLink
@@ -19,7 +19,7 @@ function AppLayout() {
               end={item.end}
               className={({ isActive }) =>
                 `rounded-md px-3 py-1.5 text-sm font-medium transition-colors duration-150 ${
-                  isActive ? 'bg-white text-black' : 'text-gray-400 hover:text-white'
+                  isActive ? 'bg-white text-black' : 'text-white/50 hover:text-white'
                 }`
               }
             >
