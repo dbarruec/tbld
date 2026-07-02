@@ -9,14 +9,13 @@ const navItems = [
 function AppLayout() {
   return (
     <div className="min-h-screen bg-white">
-      <header className="fixed inset-x-0 top-0 z-50 flex h-14 items-stretch justify-between bg-black px-6">
-        <Link
-          to="/"
-          className="flex items-center text-sm font-black uppercase tracking-wide text-white"
-        >
-          TABLADA
-        </Link>
-        <nav className="flex items-stretch gap-6">
+      <header className="fixed inset-x-0 top-0 z-50 flex flex-col bg-black md:flex-row md:items-stretch md:justify-between">
+        <div className="flex h-12 items-center px-4 md:h-14 md:px-6">
+          <Link to="/" className="text-sm font-black uppercase tracking-wide text-white">
+            TABLADA
+          </Link>
+        </div>
+        <nav className="flex h-12 items-stretch justify-center gap-6 border-t border-white/10 px-4 md:h-14 md:justify-start md:border-t-0 md:px-0 md:pr-6">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
@@ -34,7 +33,7 @@ function AppLayout() {
           ))}
         </nav>
       </header>
-      <main className="pt-14">
+      <main className="pt-24 md:pt-14">
         <Outlet />
       </main>
     </div>

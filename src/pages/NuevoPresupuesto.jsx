@@ -51,11 +51,11 @@ function NuevoPresupuesto() {
   };
 
   return (
-    <div className="mx-auto flex max-w-[1400px] gap-8 px-8 py-8">
+    <div className="mx-auto flex max-w-[1400px] flex-col gap-6 px-4 py-6 md:flex-row md:gap-8 md:px-8 md:py-8">
       <div className="min-w-0 flex-1">
         <h1 className="text-xl font-extrabold text-black">Nuevo presupuesto</h1>
 
-        <div className="mt-6 flex gap-3">
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <div className="relative flex-1">
             <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-black/40" />
             <input
@@ -99,7 +99,7 @@ function NuevoPresupuesto() {
               setMarca(e.target.value);
               setShowResults(true);
             }}
-            className="w-48 shrink-0 rounded-lg border border-black/15 bg-white px-4 py-4 text-base text-black outline-none transition-colors duration-150 focus:border-black"
+            className="w-full shrink-0 rounded-lg border border-black/15 bg-white px-4 py-4 text-base text-black outline-none transition-colors duration-150 focus:border-black sm:w-48"
           >
             <option value="">Todas las marcas</option>
             {marcas.map((m) => (
@@ -110,8 +110,8 @@ function NuevoPresupuesto() {
           </select>
         </div>
 
-        <div className="mt-6 overflow-hidden rounded-lg border border-black/10">
-          <table className="w-full text-sm">
+        <div className="mt-6 overflow-x-auto rounded-lg border border-black/10">
+          <table className="w-full min-w-[720px] text-sm">
             <thead>
               <tr className="border-b border-black/10 bg-mist text-left text-xs font-semibold uppercase tracking-wide text-black/50">
                 <th className="px-4 py-3">Descripción</th>
@@ -178,8 +178,8 @@ function NuevoPresupuesto() {
         </div>
       </div>
 
-      <aside className="w-80 shrink-0">
-        <div className="sticky top-8 space-y-6 rounded-lg border border-black/10 bg-panel p-6">
+      <aside className="w-full md:w-80 md:shrink-0">
+        <div className="static space-y-6 rounded-lg border border-black/10 bg-panel p-6 md:sticky md:top-8">
           <div className="space-y-4">
             <div>
               <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-black/50">

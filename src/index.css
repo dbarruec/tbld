@@ -61,7 +61,6 @@ body {
 
 .home-card-flip {
   perspective: 600px;
-  width: 200px;
   height: 120px;
   padding: 0;
   cursor: pointer;

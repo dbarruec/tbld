@@ -31,31 +31,31 @@ function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-black">
-      <div className="flip-card" style={{ marginBottom: 64 }}>
+    <div className="flex min-h-screen flex-col items-center justify-center bg-black px-4">
+      <div className="flip-card mb-12 md:mb-16">
         <div className="flip-card-inner">
           <div
             className="flip-card-face flex items-center justify-center bg-black text-white"
-            style={{ fontSize: 68, fontWeight: 900, letterSpacing: '-0.03em' }}
+            style={{ fontWeight: 900, letterSpacing: '-0.03em' }}
           >
-            TABLADA
+            <span className="text-[48px] md:text-[68px]">TABLADA</span>
           </div>
           <div
             className="flip-card-face flip-card-face--back flex items-center justify-center bg-white text-black"
-            style={{ fontSize: 68, fontWeight: 900, letterSpacing: '-0.03em' }}
+            style={{ fontWeight: 900, letterSpacing: '-0.03em' }}
           >
-            TABLADA
+            <span className="text-[48px] md:text-[68px]">TABLADA</span>
           </div>
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 200px)', gap: 12 }}>
+      <div className="grid w-full max-w-xs grid-cols-1 gap-3 md:w-auto md:max-w-none md:grid-cols-[repeat(3,200px)]">
         {CARDS.map((card) => (
           <button
             key={card.to}
             type="button"
             onClick={() => navigate(card.to)}
-            className="home-card-flip text-left"
+            className="home-card-flip w-full text-left md:w-[200px]"
           >
             <div className="home-card-flip-inner">
               <div
@@ -96,8 +96,8 @@ function Home() {
       </div>
 
       <p
-        className="uppercase"
-        style={{ marginTop: 56, fontSize: 10, color: 'rgba(255,255,255,0.2)', letterSpacing: '0.12em' }}
+        className="mt-12 text-center uppercase md:mt-14"
+        style={{ fontSize: 10, color: 'rgba(255,255,255,0.2)', letterSpacing: '0.12em' }}
       >
         Muebles de diseño · Buenos Aires
       </p>

@@ -53,27 +53,30 @@ function PresupuestoPreview({ open, onClose, cliente, proyecto, items, iva, tota
       onClick={onClose}
     >
       <div
-        className="modal-panel relative flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-lg bg-white"
+        className="modal-panel flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-lg bg-white"
         onClick={(e) => e.stopPropagation()}
       >
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Cerrar"
-          className="absolute right-4 top-4 rounded-md p-1.5 text-black/40 transition-colors duration-150 hover:text-black"
-        >
-          <X size={20} />
-        </button>
-
-        <div className="overflow-y-auto p-8">
+        <div className="overflow-y-auto p-4 sm:p-8">
           <div className="flex items-start justify-between gap-4 border-b border-black/10 pb-6">
-            <span className="text-2xl font-black uppercase tracking-wide text-black">TABLADA</span>
-            <span className="rounded-full border border-black/10 bg-mist px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-black/60">
-              Borrador
+            <span className="text-xl font-black uppercase tracking-wide text-black sm:text-2xl">
+              TABLADA
             </span>
+            <div className="flex shrink-0 items-center gap-3">
+              <span className="rounded-full border border-black/10 bg-mist px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-black/60">
+                Borrador
+              </span>
+              <button
+                type="button"
+                onClick={onClose}
+                aria-label="Cerrar"
+                className="rounded-md p-1.5 text-black/40 transition-colors duration-150 hover:text-black"
+              >
+                <X size={20} />
+              </button>
+            </div>
           </div>
 
-          <div className="mt-6 grid grid-cols-2 gap-x-8 gap-y-4 text-sm">
+          <div className="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 text-sm sm:grid-cols-2">
             <div>
               <p className="text-xs font-semibold uppercase tracking-wide text-black/50">Cliente</p>
               <p className="mt-1 font-medium text-black">{cliente.trim() || 'Sin especificar'}</p>
@@ -94,8 +97,8 @@ function PresupuestoPreview({ open, onClose, cliente, proyecto, items, iva, tota
             </div>
           </div>
 
-          <div className="mt-8 overflow-hidden rounded-lg border border-black/10">
-            <table className="w-full text-sm">
+          <div className="mt-8 overflow-x-auto rounded-lg border border-black/10">
+            <table className="w-full min-w-[480px] text-sm">
               <thead>
                 <tr className="border-b border-black/10 bg-mist text-left text-xs font-semibold uppercase tracking-wide text-black/50">
                   <th className="px-4 py-3">Descripción</th>
@@ -149,7 +152,7 @@ function PresupuestoPreview({ open, onClose, cliente, proyecto, items, iva, tota
           </p>
         </div>
 
-        <div className="flex items-center justify-end gap-3 border-t border-black/10 bg-panel px-8 py-4">
+        <div className="flex flex-col gap-2 border-t border-black/10 bg-panel px-4 py-4 sm:flex-row sm:justify-end sm:gap-3 sm:px-8">
           <button
             type="button"
             onClick={onClose}
