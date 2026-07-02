@@ -47,8 +47,10 @@ function buildHtml({ numero, fecha, cliente, proyecto, items, iva, totales }) {
     margin: 0;
     padding: 40px 20px;
     background: #f0eeea;
+    -webkit-text-fill-color: initial;
   }
   table { width: 100%; border-collapse: collapse; }
+  a { color: inherit !important; text-decoration: none !important; }
 </style>
 </head>
 <body>
