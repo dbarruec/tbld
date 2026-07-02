@@ -6,8 +6,31 @@
 
 @theme {
   --color-mist: #f5f5f5;
+  --color-panel: #fafafa;
 }
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
+}
+
+.modal-backdrop {
+  opacity: 1;
+  transition: opacity 200ms ease-out;
+
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+.modal-panel {
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 200ms ease-out,
+    transform 200ms ease-out;
+
+  @starting-style {
+    opacity: 0;
+    transform: scale(0.95);
+  }
 }

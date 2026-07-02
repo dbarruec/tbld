@@ -9,17 +9,21 @@ const navItems = [
 function AppLayout() {
   return (
     <div className="min-h-screen bg-white">
-      <header className="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between bg-black px-6">
-        <span className="text-sm font-black uppercase tracking-wide text-white">TABLADA</span>
-        <nav className="flex items-center gap-1">
+      <header className="fixed inset-x-0 top-0 z-50 flex h-14 items-stretch justify-between bg-black px-6">
+        <span className="flex items-center text-sm font-black uppercase tracking-wide text-white">
+          TABLADA
+        </span>
+        <nav className="flex items-stretch gap-6">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
               end={item.end}
               className={({ isActive }) =>
-                `rounded-md px-3 py-1.5 text-sm font-medium transition-colors duration-150 ${
-                  isActive ? 'bg-white text-black' : 'text-white/50 hover:text-white'
+                `flex items-center border-b-2 text-sm transition-colors duration-150 ${
+                  isActive
+                    ? 'border-white font-bold text-white'
+                    : 'border-transparent font-medium text-white/50 hover:text-white'
                 }`
               }
             >
