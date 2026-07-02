@@ -33,7 +33,8 @@ function NuevoPresupuesto() {
         (p) =>
           p.des.toLowerCase().includes(query) ||
           p.mar.toLowerCase().includes(query) ||
-          p.cod.toLowerCase().includes(query)
+          p.cod.toLowerCase().includes(query) ||
+          p.cat.toLowerCase().includes(query)
       )
       .slice(0, 10);
   }, [search]);
