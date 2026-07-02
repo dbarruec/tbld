@@ -34,8 +34,8 @@ function Home() {
             key={card.to}
             type="button"
             onClick={() => navigate(card.to)}
-            className="home-card text-left"
-            style={{ padding: '20px 18px' }}
+            className="home-card flex flex-col text-left"
+            style={{ padding: '20px 18px', height: 120 }}
           >
             <span
               className="home-card-arrow block"
@@ -43,15 +43,17 @@ function Home() {
             >
               →
             </span>
-            <span
-              className="mt-3 block uppercase text-white"
-              style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.04em' }}
-            >
-              {card.label}
-            </span>
-            <span className="mt-1 block" style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)' }}>
-              {card.description}
-            </span>
+            <div className="mt-auto">
+              <span
+                className="block uppercase text-white"
+                style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.04em' }}
+              >
+                {card.label}
+              </span>
+              <span className="mt-1 block" style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)' }}>
+                {card.description}
+              </span>
+            </div>
           </button>
         ))}
       </div>
