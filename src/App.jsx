@@ -1,9 +1,21 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import AppLayout from './components/layout/AppLayout';
+import NuevoPresupuesto from './pages/NuevoPresupuesto';
+import Historico from './pages/Historico';
+import Seguimiento from './pages/Seguimiento';
+
 function App() {
   return (
-    <div className="min-h-screen">
-      <h1 className="text-2xl font-semibold">tbld</h1>
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route element={<AppLayout />}>
+          <Route path="/" element={<NuevoPresupuesto />} />
+          <Route path="/historico" element={<Historico />} />
+          <Route path="/seguimiento" element={<Seguimiento />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
