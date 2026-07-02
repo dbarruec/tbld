@@ -37,7 +37,11 @@ function buildHtml({ numero, fecha, cliente, proyecto, items, iva, totales }) {
 <title>Presupuesto ${escapeHtml(numero)}</title>
 <style>
   @page { margin: 1.5cm; }
-  * { box-sizing: border-box; }
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
   body {
     font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
     margin: 0;
