@@ -16,6 +16,7 @@ export function usePresupuesto() {
           cod: producto.cod,
           des: producto.des,
           mar: producto.mar,
+          det: producto.det,
           pre: producto.pre,
           cantidad: 1,
           coef: coeficienteGlobal,
